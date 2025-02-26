@@ -20,10 +20,22 @@ client = TestClient(app)
 def test_read_main():
     # "/" 경로에 GET 요청을 보냄
     response = client.get("/")
-    print(response.status_code)
-    print(response.json())
-
+    
     # 응답 상태 코드가 200인지 확인
-    assert response.status_code == 200        
+    assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
+    
     # 응답 JSON이 {"message": "Hello World"}인지 확인
-    assert response.json() == {"message": "Hello World"}
+    response_json = response.json()
+    assert response_json == {"message": "Hello World"}, f"Expected JSON {{'message': 'Hello World'}}, but got {response_json}"
+    
+    # 응답 헤더 확인
+    assert response.headers["content-type"] == "application/json", f"Expected content-type 'application/json', but got {response.headers['content-type']}"
+    
+    # 응답 시간 확인 (예: 500ms 이하)
+    assert response.elapsed.total_seconds() < 0.5, f"Response time exceeded 500ms: {response.elapsed.total_seconds()}s"
+    
+    # 응답 로그 출력
+    print(f"Status Code: {response.status_code}")
+    print(f"Response JSON: {response_json}")
+    print(f"Response Headers: {response.headers}")
+    print(f"Response Time: {response.elapsed.total_seconds()}s")
