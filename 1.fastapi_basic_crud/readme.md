@@ -1,54 +1,92 @@
-# FastAPI로 만드는 도서 관리 API
+# FastAPI 기본 CRUD
 
-안녕하세요! 이 프로젝트는 FastAPI를 사용하여 간단한 도서 관리 시스템을 만드는 방법을 배우는 예제입니다. CRUD(Create, Read, Update, Delete) 작업을 통해 RESTful API 개발의 기초를 배워봅시다.
+이 프로젝트는 FastAPI를 사용하여 기본적인 CRUD(Create, Read, Update, Delete) 작업을 구현하는 방법을 보여주는 예제입니다.
 
-## 이 프로젝트로 배우는 내용
+## 주요 학습 내용
 
-1. FastAPI로 REST API 만들기
-2. Pydantic을 사용한 데이터 검증
-3. HTTP 메서드 사용하기 (GET, POST, PUT, DELETE)
-4. 경로 매개변수와 요청 본문 다루기
-5. API 문서 자동 생성 활용하기
+1. RESTful API 구현
+   - 표준 HTTP 메서드 활용 (GET, POST, PUT, DELETE)
+   - 리소스 기반 URL 설계
+   - 상태 코드 활용
 
-## 시작하기 전에
+2. 데이터 모델링과 검증
+   - Pydantic 모델 정의
+   - 입력 데이터 검증
+   - 응답 모델 설계
 
-### 필요한 도구
-- Python 3.7 이상
-- 코드 편집기 (VS Code 추천)
-- 터미널 또는 명령 프롬프트
-
-### 알아야 할 개념
-1. **REST API란?**
-   - 웹에서 데이터를 주고받는 방식의 표준
-   - 리소스(예: 책)에 대한 CRUD 작업을 HTTP 메서드로 처리
-
-2. **CRUD란?**
-   - Create (생성) - POST 메서드
-   - Read (읽기) - GET 메서드
-   - Update (수정) - PUT 메서드
-   - Delete (삭제) - DELETE 메서드
+3. 메모리 기반 데이터 저장소
+   - 데이터 구조 설계
+   - CRUD 작업 구현
+   - 데이터 영속성 관리
 
 ## 프로젝트 구조
+
 ```
 fastapi_basic_crud/
-├── main.py           # API 구현 코드
-└── requirements.txt  # 필요한 패키지 목록
+├── main.py           # 메인 애플리케이션 코드
+└── requirements.txt  # 의존성 목록
 ```
 
-## 시작하기
+## API 엔드포인트
 
-### 1. 가상환경 만들기
+### 도서 관리
+- `GET /books`: 모든 도서 목록 조회
+- `GET /books/{book_id}`: 특정 도서 조회
+- `POST /books`: 새 도서 추가
+- `PUT /books/{book_id}`: 도서 정보 수정
+- `DELETE /books/{book_id}`: 도서 삭제
+
+## 설치 및 실행
+
+1. 의존성 설치
 ```bash
-# 가상환경 생성
-python -m venv .venv
-
-# 가상환경 활성화
-.venv\Scripts\activate  # Windows
-source .venv/bin/activate  # macOS/Linux
+pip install -r requirements.txt
 ```
 
-### 2. 패키지 설치하기
+2. 서버 실행
 ```bash
+uvicorn main:app --reload
+```
+
+3. API 문서 확인
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
+
+## 데이터 모델
+
+```python
+class Book(BaseModel):
+    id: Optional[int] = None
+    title: str
+    author: str
+    description: Optional[str] = None
+    price: float
+```
+
+## 주요 기능
+
+1. **데이터 검증**
+   - Pydantic을 사용한 자동 데이터 검증
+   - 필수 필드 확인
+   - 데이터 타입 검증
+
+2. **오류 처리**
+   - 적절한 HTTP 상태 코드 반환
+   - 상세한 오류 메시지 제공
+
+3. **자동 문서화**
+   - OpenAPI (Swagger) 문서 자동 생성
+   - 대화형 API 테스트 인터페이스
+
+## 학습 목표
+
+이 프로젝트를 통해 다음을 학습할 수 있습니다:
+
+1. FastAPI의 기본 구조와 작동 방식
+2. RESTful API 설계 원칙
+3. Pydantic을 사용한 데이터 모델링
+4. HTTP 메서드와 상태 코드의 올바른 사용
+5. API 문서화 자동화
 pip install -r requirements.txt
 ```
 
