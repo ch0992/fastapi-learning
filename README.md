@@ -5,11 +5,13 @@
 ## 프로젝트 구조
 
 ```
-fastapi/
-├── 0.fastapi_basic/        # FastAPI 기초
-├── 1.fastapi_basic_crud/   # 기본적인 CRUD 구현
-├── 2.fastapi_structured/   # 구조화된 프로젝트
-└── 3.fastapi_advanced/     # 고급 기능 구현
+fastapi-learning/
+├── 0.fastapi_basic/                    # FastAPI 기초
+├── 1.fastapi_basic_crud/               # 기본적인 CRUD 구현
+├── 2.fastapi_structured/               # 구조화된 프로젝트
+├── 3.fastapi_advanced/                 # 고급 기능 구현
+├── 4.fastapi_boilerplate_structured/   # 구조화된 보일러플레이트
+└── 5.fastapi_boilerplate_advanced/     # 고급 보일러플레이트
 ```
 
 ## 단계별 설명
@@ -40,6 +42,23 @@ fastapi/
 - 사용자 권한 관리
 - 테스트 코드 작성
 - API 문서화 (Swagger/ReDoc)
+
+### 4. 구조화된 보일러플레이트 (4.fastapi_boilerplate_structured)
+- 모듈화된 프로젝트 구조
+- 서비스 레이어 패턴
+- 라우터 기반 구조
+- 기본 CRUD 보일러플레이트
+- 재사용 가능한 컴포넌트
+
+### 5. 고급 보일러플레이트 (5.fastapi_boilerplate_advanced)
+- 계층화된 아키텍처
+- API 버전 관리
+- 사용자 인증/인가 시스템
+- 데이터베이스 세션 관리
+- CRUD 베이스 클래스
+- 환경 설정 관리
+- 보안 기능 통합
+- 테스트 프레임워크
 
 ## 실행 방법
 
